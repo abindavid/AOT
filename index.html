@@ -3,84 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Attack on Titan | God Tier</title>
+<title>Attack on Titan | Break The Internet</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
-font-family:'Rajdhani', sans-serif;
+background:#000;
 color:white;
+font-family:'Rajdhani',sans-serif;
 overflow-x:hidden;
-background:black;
 }
 
-/* ===== TITAN SKY BACKGROUND ===== */
-body::before{
-content:"";
+/* ===== TITAN TRANSFORMATION LOADER ===== */
+.loader{
 position:fixed;
-width:100%;
-height:100%;
+inset:0;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+z-index:9999;
+animation:fadeOut 1.5s ease 3s forwards;
+}
+
+.loader h1{
+font-family:'Orbitron';
+font-size:3rem;
+letter-spacing:6px;
+animation:heat 1.2s infinite alternate;
+}
+
+@keyframes heat{
+from{text-shadow:0 0 10px #ff7b7b}
+to{text-shadow:0 0 40px #ff2e2e}
+}
+
+@keyframes fadeOut{
+to{opacity:0;visibility:hidden}
+}
+
+/* TITAN ENERGY BURST */
+.burst{
+position:absolute;
+width:200px;
+height:200px;
+border-radius:50%;
+background:radial-gradient(circle,rgba(255,120,120,.9),transparent 70%);
+animation:burst 2.5s ease-out infinite;
+}
+
+@keyframes burst{
+from{transform:scale(.2);opacity:1}
+to{transform:scale(2.8);opacity:0}
+}
+
+/* ===== PARALLAX WAR BACKGROUND ===== */
+.parallax{
+position:fixed;
+width:120%;
+height:120%;
 background:
-radial-gradient(circle at 20% 30%, rgba(255,120,120,0.15), transparent),
-radial-gradient(circle at 80% 70%, rgba(120,180,255,0.12), transparent),
+radial-gradient(circle at 30% 40%, rgba(255,80,80,.15), transparent),
+radial-gradient(circle at 70% 60%, rgba(120,180,255,.12), transparent),
 linear-gradient(270deg,#020202,#0c1325,#020202);
 background-size:400% 400%;
-animation:skyMove 18s ease infinite;
+animation:bgMove 18s ease infinite;
 z-index:-3;
 }
 
-@keyframes skyMove{
+@keyframes bgMove{
 0%{background-position:0% 50%}
 50%{background-position:100% 50%}
 100%{background-position:0% 50%}
 }
 
-/* MOVING CLOUDS */
-.clouds{
+/* MOVING SMOKE */
+.smoke{
 position:fixed;
 width:200%;
 height:100%;
-background:url("https://www.transparenttextures.com/patterns/cloudy.png");
-opacity:0.12;
-animation:cloudMove 90s linear infinite;
+background:url("https://www.transparenttextures.com/patterns/smoke.png");
+opacity:.15;
+animation:smoke 120s linear infinite;
 z-index:-2;
 }
 
-@keyframes cloudMove{
+@keyframes smoke{
 from{transform:translateX(0)}
 to{transform:translateX(-50%)}
 }
 
-/* LIGHTNING FLASH */
-.flash{
-position:fixed;
-inset:0;
-background:white;
-opacity:0;
-pointer-events:none;
-}
-
-.flash.active{
-animation:flash 0.4s ease;
-}
-
-@keyframes flash{
-0%{opacity:0}
-20%{opacity:.8}
-100%{opacity:0}
-}
-
-/* HERO SECTION */
+/* HERO */
 .hero{
-height:80vh;
+height:100vh;
 display:flex;
 flex-direction:column;
 align-items:center;
@@ -91,158 +111,139 @@ position:relative;
 
 .hero h1{
 font-family:'Orbitron';
-font-size:4.5rem;
-letter-spacing:6px;
-text-shadow:0 0 25px rgba(255,255,255,.8);
+font-size:5rem;
+letter-spacing:8px;
 animation:titleGlow 3s ease-in-out infinite alternate;
 }
 
 @keyframes titleGlow{
-from{text-shadow:0 0 10px #fff}
-to{text-shadow:0 0 40px #8ab4ff}
+from{text-shadow:0 0 20px white}
+to{text-shadow:0 0 60px #8ab4ff}
 }
 
 .hero p{
 margin-top:20px;
-opacity:.85;
-font-size:1.2rem;
+font-size:1.4rem;
+opacity:.9;
 }
 
-/* SCROLL INDICATOR */
-.scroll{
+/* WALL BREAK EFFECT */
+.wall{
 position:absolute;
-bottom:40px;
-width:30px;
-height:55px;
-border:2px solid white;
-border-radius:20px;
-}
-
-.scroll::after{
-content:"";
-position:absolute;
-left:50%;
-top:10px;
-width:6px;
-height:6px;
-background:white;
-border-radius:50%;
-transform:translateX(-50%);
-animation:scroll 2s infinite;
-}
-
-@keyframes scroll{
-0%{opacity:1; top:10px}
-100%{opacity:0; top:30px}
+bottom:-120px;
+width:120%;
+height:220px;
+background:linear-gradient(#1b1b1b,#111);
+transform:rotate(-2deg);
+box-shadow:0 -40px 80px black inset;
 }
 
 /* CHARACTER GRID */
 .container{
-padding:80px 8%;
+padding:120px 8%;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:60px;
+grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+gap:70px;
 }
 
 .card{
-height:520px;
-border-radius:28px;
+height:560px;
+border-radius:32px;
 overflow:hidden;
 position:relative;
 cursor:pointer;
-transform-style:preserve-3d;
-transition:.8s;
+transition:.7s;
 }
 
-/* 3D HOVER */
 .card:hover{
-transform:rotateY(8deg) rotateX(6deg) scale(1.03);
+transform:translateY(-18px) scale(1.03);
 }
 
 .card img{
 width:100%;
 height:100%;
 object-fit:cover;
-transition:1s;
+transition:1.2s;
 }
 
 .card:hover img{
-transform:scale(1.15);
-filter:brightness(1.25);
+transform:scale(1.2);
+filter:brightness(1.3);
 }
 
-/* GRADIENT OVERLAY */
-.card::before{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(to top, rgba(0,0,0,.95), transparent 60%);
-z-index:1;
-}
-
-/* LIGHT BORDER */
+/* ENERGY AURA */
 .card::after{
 content:"";
 position:absolute;
-inset:0;
-border-radius:28px;
-padding:2px;
-background:linear-gradient(120deg,transparent,rgba(138,180,255,.7),transparent);
--webkit-mask:
-linear-gradient(#000 0 0) content-box,
-linear-gradient(#000 0 0);
--webkit-mask-composite:xor;
-mask-composite:exclude;
+inset:-2px;
+border-radius:32px;
+background:linear-gradient(120deg,transparent,#8ab4ff,transparent);
 opacity:0;
 transition:.6s;
 }
 
-.card:hover::after{
-opacity:1;
+.card:hover::after{opacity:1}
+
+/* DARK GRADIENT */
+.card::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(to top,rgba(0,0,0,.95),transparent 60%);
+z-index:1;
 }
 
 .info{
 position:absolute;
 bottom:0;
+padding:34px;
 z-index:2;
-padding:30px;
 }
 
-.info h2{
-font-size:2rem;
-margin-bottom:10px;
-}
+.info h2{font-size:2.3rem;margin-bottom:10px}
+.info p{opacity:.85}
 
-.info p{
-opacity:.85;
-}
-
-/* PARTICLES */
-.particles span{
+/* ODM SPEED LINES */
+.lines span{
 position:fixed;
-width:3px;
-height:3px;
-background:white;
-opacity:.2;
-animation:particles linear infinite;
+width:2px;
+height:160px;
+background:rgba(255,255,255,.08);
+animation:fall linear infinite;
 }
 
-@keyframes particles{
-from{transform:translateY(-10vh)}
-to{transform:translateY(110vh)}
+@keyframes fall{
+from{transform:translateY(-200px)}
+to{transform:translateY(120vh)}
+}
+
+/* LIGHTNING */
+.flash{
+position:fixed;
+inset:0;
+background:white;
+opacity:0;
+pointer-events:none;
+}
+
+.flash.active{animation:flash .35s}
+
+@keyframes flash{
+0%{opacity:0}
+20%{opacity:.9}
+100%{opacity:0}
 }
 
 footer{
+padding:60px;
 text-align:center;
-padding:50px;
+letter-spacing:4px;
 opacity:.6;
-letter-spacing:3px;
 }
 
-/* MOBILE */
 @media(max-width:768px){
 .hero h1{font-size:3rem}
-.container{gap:40px}
+.container{gap:45px}
 }
 
 </style>
@@ -250,23 +251,29 @@ letter-spacing:3px;
 
 <body>
 
-<div class="clouds"></div>
+<!-- LOADER -->
+<div class="loader">
+<div class="burst"></div>
+<h1>TITAN RISING</h1>
+</div>
+
+<div class="parallax"></div>
+<div class="smoke"></div>
 <div class="flash" id="flash"></div>
 
-<!-- PARTICLES -->
-<div class="particles">
-<span style="left:10%; animation-duration:6s"></span>
-<span style="left:20%; animation-duration:8s"></span>
-<span style="left:35%; animation-duration:7s"></span>
-<span style="left:50%; animation-duration:5s"></span>
-<span style="left:70%; animation-duration:9s"></span>
-<span style="left:85%; animation-duration:6s"></span>
+<!-- SPEED LINES -->
+<div class="lines">
+<span style="left:10%; animation-duration:5s"></span>
+<span style="left:25%; animation-duration:7s"></span>
+<span style="left:45%; animation-duration:6s"></span>
+<span style="left:65%; animation-duration:8s"></span>
+<span style="left:85%; animation-duration:5s"></span>
 </div>
 
 <section class="hero">
 <h1>ATTACK ON TITAN</h1>
-<p>Dedicate your heart. Fight for freedom.</p>
-<div class="scroll"></div>
+<p>If you win, you live. If you lose, you die.</p>
+<div class="wall"></div>
 </section>
 
 <section class="container">
@@ -275,7 +282,7 @@ letter-spacing:3px;
 <img src="images/eren.jpg" alt="Eren">
 <div class="info">
 <h2>Eren Yeager</h2>
-<p>The embodiment of rage and freedom — wielder of the Attack Titan.</p>
+<p>Freedom is worth any cost.</p>
 </div>
 </div>
 
@@ -283,7 +290,7 @@ letter-spacing:3px;
 <img src="images/mikasa.jpg" alt="Mikasa">
 <div class="info">
 <h2>Mikasa Ackerman</h2>
-<p>Unmatched precision, unstoppable strength, absolute loyalty.</p>
+<p>Power. Precision. Protection.</p>
 </div>
 </div>
 
@@ -291,42 +298,32 @@ letter-spacing:3px;
 <img src="images/armin.jpg" alt="Armin">
 <div class="info">
 <h2>Armin Arlert</h2>
-<p>A brilliant strategist capable of changing humanity's fate.</p>
+<p>The mind that can defeat monsters.</p>
 </div>
 </div>
 
 </section>
 
 <footer>
-⚔️ SHINZOU WO SASAGEYO ⚔️
+⚔️ DEDICATE YOUR HEART ⚔️
 </footer>
 
 <script>
 
-// RANDOM LIGHTNING EVERY FEW SECONDS
-const flash = document.getElementById('flash');
-
+// RANDOM LIGHTNING
+const flash=document.getElementById('flash');
 function lightning(){
 flash.classList.add('active');
-setTimeout(()=>flash.classList.remove('active'),400);
+setTimeout(()=>flash.classList.remove('active'),350);
 }
+setInterval(()=>{if(Math.random()>.55){lightning()}},3500);
 
-setInterval(()=>{
-if(Math.random() > .6){
-lightning();
-}
-},4000);
-
-// CURSOR PARALLAX
-const cards = document.querySelectorAll('.card');
-
-document.addEventListener('mousemove', e=>{
-const x = (window.innerWidth/2 - e.pageX)/25;
-const y = (window.innerHeight/2 - e.pageY)/25;
-
-cards.forEach(card=>{
-card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
-});
+// PARALLAX CAMERA EFFECT
+const bg=document.querySelector('.parallax');
+document.addEventListener('mousemove',e=>{
+let x=(e.clientX/window.innerWidth)*30;
+let y=(e.clientY/window.innerHeight)*30;
+bg.style.transform=`translate(-${x}px,-${y}px)`;
 });
 
 </script>
